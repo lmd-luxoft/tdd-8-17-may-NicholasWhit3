@@ -33,5 +33,17 @@ namespace TDDKata
             int sum = calculator.Add("1,2,3,4,5");
             Assert.Equal(15, sum);
         }
+
+        [Fact]
+        public void Add_NegativeNumberString_ThrowsException()
+        {
+            Assert.Throws<ArgumentException>(() => calculator.Add("-1"));
+        }
+
+        [Fact]
+        public void Add_NegativeNumbersString_ThrowsException()
+        {
+            Assert.Throws<ArgumentException>(() => calculator.Add("1,-2,3,-4,5"));
+        }
     }
 }
