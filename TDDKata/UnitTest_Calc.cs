@@ -45,5 +45,41 @@ namespace TDDKata
         {
             Assert.Throws<ArgumentException>(() => calculator.Add("1,-2,3,-4,5"));
         }
+        [Fact]
+        public void Add_TwoNumbersSeparatedByNewLine_ReturnsSum()
+        {
+            string input = "1\n2";
+            int result = calculator.Add(input);
+            Assert.Equal(3, result);
+        }
+
+        [Fact]
+        public void Add_InvalidInputFormat_ThrowsArgumentException()
+        {
+            string input = "1,a";
+            Assert.Throws<FormatException>(() => calculator.Add(input));
+            //Assert.Throws<ArgumentException>(() => calculator.Add(input))
+        }
+
+        [Fact]
+        public void Add_NumbersSeparatedByCommaAndNewLine_ThrowsArgumentException()
+        {
+            string input = "1\n,2";
+            Assert.Throws<ArgumentException>(() => calculator.Add(input));
+        }
+
+        [Fact]
+        public void Add_NumbersSeparatedByCommaAndNewLine2_ThrowsArgumentException()
+        {
+            string input = "1,\n";
+            Assert.Throws<ArgumentException>(() => calculator.Add(input));
+        }
+
+        [Fact]
+        public void Add_NewLineCharacters_ThrowsArgumentException()
+        {
+            string input = "1\n2\n3";
+            Assert.Throws<ArgumentException>(() => calculator.Add(input));
+        }
     }
 }

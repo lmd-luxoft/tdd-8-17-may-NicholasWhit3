@@ -4,10 +4,9 @@
     {
         public int Add(string digits)
         {
-            if (string.IsNullOrEmpty(digits))
-            {
-                return 0;
-            }
+            if (string.IsNullOrEmpty(digits)) { return 0; }
+            
+            if(digits.Contains("\n")) { digits = digits.Replace("\n", ","); }
 
             char[] dividers = { ',' };
             string[] splitNumbers = digits.Split(dividers);
@@ -15,11 +14,6 @@
             if (splitNumbers.Length == 1)
             {
                 return int.Parse(splitNumbers[0]);
-            }
-
-            if (splitNumbers.Length == 2)
-            {
-                return int.Parse(splitNumbers[0]) + int.Parse(splitNumbers[1]);
             }
 
             // Handle more than two numbers
